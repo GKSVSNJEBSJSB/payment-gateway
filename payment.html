@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <style>
+        
+    @import url('https://fonts.googleapis.com/css2? family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: #21182B;
+        }
+
+        h3{
+            color: white;
+        }
+        .parent{
+            height: 100vh;
+            width: 100wh;
+            background:white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+        }
+        #myForm{
+            height: 590px;
+            width: 530px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-around;
+            background-color: #21182B;
+            border: 3px solid maroon;
+            border-radius: 20px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+        #myForm h3{
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 55px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 890;
+            text-shadow: 5px 2px 2px maroon;
+            flex-wrap: wrap;
+        }
+
+        #myForm input{
+            padding: 13px;
+            /* border: 2px solid maroon; */
+            width: 100%;
+            gap: 20px; 
+            border-radius: 50px;     
+        }
+        #myForm input:hover{
+            box-shadow: 0 0 10px magenta;
+            transition: 1.2s;
+        }
+        #myForm input[type=submit]{
+            background-color:rgb(63, 19, 81);
+            color: white;
+            font-size: 18px;
+            font-weight: 800; 
+            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;       
+           }
+        #myForm input[type=submit]:hover{
+            box-shadow: 0 0 19px purple;
+            transition: 1.2s;
+        }
+
+        .box-p{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background-color: #21182B;
+            height: 134px;
+            width: 480px;
+            gap: 20px;
+            /* padding-bottom: 30px; */
+        }
+
+        @media (max-width: 468px) {
+       .box-p{
+        height: 50%;
+        width: 65%; /* Adjust padding for smaller screens */
+       }
+       }
+       @media (max-width: 468px) {
+       #myForm{
+        height: 600px;
+        width: 95%; /* Adjust padding for smaller screens */
+       }
+       }
+
+       @media (max-width: 468px) {
+       h3{
+        font-size: 50%; /* Adjust padding for smaller screens */
+       }
+       }
+/* Media query for screens smaller than 768px */
+
+
+        .box1{
+            height: 102px;
+            width: 102px;
+            background: url(py-img/paytm.png)no-repeat;
+            background-position: center;
+            background-size:  42px;
+            /* background-color: #f0f0f0;
+            border-radius: 10px; */
+           
+        }
+        .box2{
+            height: 102px;
+            width: 102px;
+            background: url(py-img/phonepe.png)no-repeat;
+            background-position: center;
+            background-size:  38px; 
+            /* background-color: #f0f0f0;
+            border-radius: 10px; */
+        }
+        .box3{
+            height: 102px;
+            width: 102px;
+            background: url(py-img/gpay.png)no-repeat;
+            background-position: center;
+            background-size:  44px; 
+            /* background-color: #f0f0f0;
+            border-radius: 10px; */
+        }
+        .box4{
+            height: 102px;
+            width: 102px;
+            background: url(py-img/upi.png)no-repeat;
+            background-position: center;
+            background-size: 44px;
+            /* background-color: #f0f0f0;
+            border-radius: 10px; */
+        }
+        .qr{
+            height: 400px;
+            width: 200px;
+            background:url("py-img/qr/qr.png");
+            background-position: center;
+            background-size: cover;
+        }
+        
+        h4{
+            color: white;
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding-bottom: 68;
+            text-shadow: 2px 2px 1px purple;
+        }
+
+/* Media query for screens smaller than 768px */
+
+@media (max-width: 768px) {
+    .box-p {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+}
+/* Media query for screens smaller than 576px */
+
+    </style>
+   
+    <div class="parent">
+    <form id="myForm">
+     <h3>payment</h3>
+       <div class="box-p">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+       </div>
+        <div class="qr"></div>
+        <label for="amount"></label>
+        <h4>Enter the Amount</h4>
+        <input type="number" id="amount" name="amount" required />
+        <input type="submit" value="Pay Now" />
+    </form>
+       </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('myForm');
+        const amountInput = document.getElementById('amount');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const key = 'rzp_test_Bj2QyTSaoFufsG'; 
+            const options = {
+                key,
+                amount: amountInput.value * 100,
+                currency: 'INR',
+                name: 'Your Company Name',
+                description: 'Test Transaction',
+                handler: function (response) {
+                    console.log(response);
+                    alert('Payment successful! Transaction ID: ' + response.razorpay_payment_id);
+                },
+                prefill: {
+                    name: '',
+                    email: '',
+                    contact: '',
+                },
+                notes: {
+                    address: 'Razorpay',
+                },
+                theme: {
+                    color: '#F37254',
+                },
+            };
+
+            //Verify that your Razorpay account is configured to accept UPI payments. Log in to your Razorpay dashboard and check the settings ?
+
+            const paymentObject = new Razorpay(options);
+            paymentObject.open();
+        });
+    </script>
+</body>
+</html>
